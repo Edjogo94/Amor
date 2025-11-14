@@ -3,159 +3,193 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para Mi Amada Reina</title>
+    <title>Para Mi Amada Reina E.G.</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Parisienne&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #fce4ec; }
-        .text-rose-title { color: #d81b60; }
+        /* Fuentes personalizadas */
         .font-parisienne { font-family: 'Parisienne', cursive; }
-        .card-shadow { box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); }
+        .font-playfair { font-family: 'Playfair Display', serif; }
+
+        /* Efecto de corazón latiendo */
         @keyframes heartbeat {
-            0% { transform: scale(1); } 15% { transform: scale(1.05); } 30% { transform: scale(1); }
-            45% { transform: scale(1.05); } 60% { transform: scale(1); } 100% { transform: scale(1); }
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
         }
-        .heartbeat { animation: heartbeat 3s infinite; }
-        .firma {
-            font-family: 'Parisienne', cursive;
-            font-size: 2.5rem;
-            color: #d81b60;
-            font-weight: 400;
-        }
+        .heartbeat { animation: heartbeat 1.5s ease-in-out infinite; }
+        
+        /* Ocultar barra de scroll por defecto */
         .custom-scrollbar::-webkit-scrollbar { width: 8px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: #fbcfe8; border-radius: 10px; }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #f472b6; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #9ca3af; }
+
+        /* Estilos para el botón de subir archivo */
+        input[type="file"] { display: none; }
+        .file-upload-label {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            background-color: #3b82f6; /* bg-blue-500 */
+            color: white;
+            padding: 0.75rem 1.25rem;
+            border-radius: 0.5rem; /* rounded-lg */
+            font-weight: 700; /* font-bold */
+            transition: background-color 0.3s;
+        }
+        .file-upload-label:hover {
+            background-color: #2563eb; /* bg-blue-600 */
+        }
+        .file-upload-label svg {
+            margin-right: 0.5rem;
+        }
     </style>
 </head>
-<body class="min-h-screen flex flex-col items-center justify-center p-4">
+<body class="bg-gray-100 font-playfair text-gray-800">
 
-    <header class="text-center mb-12">
-        <h1 class="text-6xl md:text-8xl font-parisienne text-rose-title mb-2">Mi Amada Reina</h1>
-        <p class="text-2xl md:text-3xl font-light text-gray-700">Mi corazón es tuyo para siempre</p>
-    </header>
+    <!-- Wrapper -->
+    <div class="container mx-auto max-w-4xl p-4 sm:p-8">
 
-    <main class="w-full max-w-4xl bg-white rounded-xl p-6 md:p-10 card-shadow">
-
-        <!-- FOTO 1 -->
-        <section class="mb-10 text-center relative overflow-hidden rounded-xl h-96 bg-cover bg-center"
-                 style="background-image: url('foto1.jpg');">
-            <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center p-4">
-                <!-- CAMBIO: Texto más pequeño en móvil (text-2xl) y mediano (md:text-3xl) -->
-                <p class="text-white text-2xl md:text-3xl font-semibold leading-relaxed">
-                    Mi Amor, no hay palabras suficientes para expresar la inmensidad de lo que siento por ti. Cada día a tu lado es un regalo y una bendición.
+        <!-- 1. Sección de Encabezado (Foto 1) -->
+        <header class="relative h-96 w-full rounded-2xl overflow-hidden shadow-2xl mb-12">
+            <!-- Imagen de fondo -->
+            <div class="absolute inset-0 bg-center bg-cover" style="background-image: url('foto1.jpg');"></div>
+            <!-- Capa oscura -->
+            <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+            <!-- Contenido de texto -->
+            <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-4">
+                <h1 class="font-parisienne text-white text-6xl sm:text-7xl md:text-8xl" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.7);">
+                    Para mi Reina
+                </h1>
+                <p class="text-white text-xl sm:text-2xl md:text-3xl mt-4 font-playfair" style="text-shadow: 1px 1px 4px rgba(0,0,0,0.7);">
+                    Mi corazón es tuyo para siempre
                 </p>
             </div>
-        </section>
+        </header>
 
-        <!-- TU ESENCIA -->
-        <section class="mb-12">
-            <h2 class="text-4xl font-bold text-rose-title mb-6 flex items-center justify-center"><i class="fas fa-gem mr-3 text-pink-500"></i> Tu Esencia Pura</h2>
-            <div class="md:grid md:grid-cols-2 gap-8 items-center">
-                <div class="text-lg text-gray-700 space-y-4">
-                    <p>Lo que más me enamora de ti es la esencia de tu ser:</p>
-                    <ul class="list-none space-y-3">
-                        <li class="flex items-start"><i class="fas fa-star text-pink-500 mr-3 mt-1"></i><span>Tu hermosa <strong class="font-bold">personalidad</strong> y tu <strong class="font-bold">sencillez</strong>.</span></li>
-                        <li class="flex items-start"><span class="text-pink-500 mr-3 mt-1 font-bold text-xl">JW</span><span>Tu profundo <strong class="font-bold">amor por Jehová</strong>, el pilar que guía nuestra vida.</span></li>
-                    </ul>
+        <!-- 2. Sección Tu Esencia Pura (Foto 2) -->
+        <section class="mb-12 bg-white p-6 sm:p-10 rounded-2xl shadow-xl flex flex-col md:flex-row items-center gap-6 sm:gap-10">
+            <!-- Texto -->
+            <div class="flex-1">
+                <h2 class="font-parisienne text-5xl text-rose-500 mb-6 text-center md:text-left">Tu Esencia Pura</h2>
+                <div class="space-y-4 text-lg text-gray-700">
+                    <div class="flex items-start gap-3">
+                        <span class="text-rose-400 text-2xl mt-1">&#10084;</span>
+                        <p>Me enamora tu hermosa <strong class="font-bold">personalidad</strong> y tu <strong class="font-bold">sencillez</strong>, que brillan de una forma genuina.</p>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="text-rose-400 text-xl font-bold mt-1">JW</span>
+                        <p>Tu profundo <strong class="font-bold">amor por Jehová</strong>, que es el pilar que guía tu vida y nuestra relación.</p>
+                    </div>
                 </div>
-                <!-- FOTO 2 -->
-                <div class="mt-6 md:mt-0 rounded-lg overflow-hidden border-4 border-pink-300 h-80 bg-cover bg-center"
-                     style="background-image: url('foto2.jpg');">
-                </div>
+            </div>
+            <!-- Imagen -->
+            <div class="w-full md:w-1/3 h-64 md:h-auto md:aspect-square rounded-2xl overflow-hidden shadow-lg bg-gray-200 bg-cover bg-center" style="background-image: url('foto2.jpg');">
             </div>
         </section>
 
-        <!-- TU CARIÑO -->
-        <section class="mb-12 pt-8 border-t border-pink-100">
-            <h2 class="text-4xl font-bold text-rose-title mb-6 flex items-center justify-center"><i class="fas fa-hand-holding-heart mr-3 text-pink-500"></i> Tu Cariño</h2>
-            <div class="md:grid md:grid-cols-2 gap-8 items-center">
-                <!-- FOTO 3 -->
-                <div class="rounded-lg overflow-hidden border-4 border-pink-300 mb-6 md:mb-0 h-80 bg-cover bg-center"
-                     style="background-image: url('foto3.jpg');">
-                </div>
-                <div class="text-lg text-gray-700 space-y-4">
-                    <p>Tu <strong class="font-bold">feminidad</strong> y tu exquisito <strong class="font-bold">trato</strong> lleno de cariño, atención y detalles que me hacen sentir el hombre más afortunado.</p>
-                    <p>Eres tan <strong class="font-bold">cariñosa, atenta y detallista</strong>.</p>
+        <!-- 3. Sección Tu Cariño (Foto 3) -->
+        <section class="mb-12 bg-white p-6 sm:p-10 rounded-2xl shadow-xl flex flex-col md:flex-row-reverse items-center gap-6 sm:gap-10">
+            <!-- Texto -->
+            <div class="flex-1">
+                <h2 class="font-parisienne text-5xl text-rose-500 mb-6 text-center md:text-left">Tu Cariño</h2>
+                <div class="space-y-4 text-lg text-gray-700">
+                    <div class="flex items-start gap-3">
+                        <span class="text-rose-400 text-2xl mt-1">&#10084;</span>
+                        <p>Tu <strong class="font-bold">feminidad</strong> y tu exquisito <strong class="font-bold">trato</strong> lleno de cariño.</p>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="text-rose-400 text-2xl mt-1">&#10084;</span>
+                        <p>Eres tan <strong class="font-bold">cariñosa</strong>, <strong class="font-bold">atenta</strong> y <strong class="font-bold">detallista</strong>, me haces sentir el hombre más afortunado.</p>
+                    </div>
                 </div>
             </div>
+            <!-- Imagen -->
+            <div class="w-full md:w-1/3 h-64 md:h-auto md:aspect-square rounded-2xl overflow-hidden shadow-lg bg-gray-200 bg-cover bg-center" style="background-image: url('foto3.jpg');">
+            </div>
         </section>
-        
-        <!-- ERES HERMOSA (Usando foto5.jpg) -->
-        <section class="mb-12 text-center relative overflow-hidden rounded-xl h-96 bg-cover bg-center card-shadow"
-                 style="background-image: url('foto5.jpg');">
-            <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center p-4">
-                <p class="text-white text-5xl md:text-7xl font-bold font-parisienne tracking-widest">
+
+        <!-- 4. Sección Eres Hermosa (Foto 5) -->
+        <section class="relative h-96 w-full rounded-2xl overflow-hidden shadow-2xl mb-12">
+            <!-- Imagen de fondo -->
+            <div class="absolute inset-0 bg-center bg-cover" style="background-image: url('foto5.jpg');"></div>
+            <!-- Capa oscura -->
+            <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+            <!-- Contenido de texto -->
+            <div class="absolute inset-0 flex items-center justify-center p-4">
+                <h2 class="font-parisienne text-white text-6xl sm:text-7xl md:text-8xl" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.7);">
                     Eres Hermosa
-                </p>
+                </h2>
             </div>
         </section>
 
-        <!-- NUESTRO FUTURO -->
-        <section class="text-center pt-8 border-t border-pink-100">
-            <h2 class="text-4xl font-bold text-rose-title mb-6 flex items-center justify-center"><i class="fas fa-envelope-open-text mr-3 text-pink-500"></i> Nuestro Futuro</h2>
-            <p class="text-xl italic text-gray-600 max-w-3xl mx-auto mb-8">
-                "Recuerdo la carta que me diste, donde me abriste tu corazón..." — El momento que atesoro.
-            </p>
-            <div class="mt-10">
-                <p class="text-3xl font-semibold text-rose-title mb-4">
-                    Quiero que sepas que <span class="heartbeat inline-block"><i class="fas fa-heart text-red-500"></i> Te Amo</span>.
-                </p>
-                <!-- CAMBIO: Añadido el texto sobre la familia y el servicio -->
-                <p class="text-2xl text-gray-800 font-medium">
-                    No concibo una vida sin ti. Mi único deseo es pasar el <strong class="font-bold">resto de mi vida a tu lado</strong>, formando una hermosa familia, sirviendo juntos a Jehová y a nuestros hermanos.
-                </p>
-            </div>
+        <!-- 5. Sección Nuestro Futuro -->
+        <section class="mb-12 text-center bg-white p-6 sm:p-10 rounded-2xl shadow-xl">
+            <h2 class="font-parisienne text-5xl text-rose-500 mb-6">Nuestro Futuro</h2>
+            <p class="text-lg md:text-xl text-gray-700 max-w-2xl mx-auto">
+                No concibo una vida sin ti. Mi único deseo es pasar el <strong class="font-bold">resto de mi vida a tu lado</strong>, formando una hermosa familia, sirviendo juntos a Jehová y a nuestros hermanos.
+            </I>
         </section>
 
-        <!-- LAS CARTAS (BOTÓN) -->
-        <section class="text-center pt-8 border-t border-pink-100 mt-12">
-            <h2 class="text-4xl font-bold text-rose-title mb-6 flex items-center justify-center"><i class="fas fa-scroll mr-3 text-pink-500"></i> Nuestro Tesoro Compartido</h2>
-            <p class="text-xl text-gray-700 max-w-3xl mx-auto mb-6">
-                Los recuerdos más hermosos de tu puño y letra. Presiona los botones para revivir el cariño de aquellas cartas que atesoro.
-            </p>
-            <!-- CONTENEDOR DE BOTONES -->
+        <!-- 6. Sección de Cartas y IA -->
+        <section class="mb-12 text-center">
+            <h2 class="font-parisienne text-5xl text-rose-500 mb-8">Nuestro Tesoro Compartido</h2>
             <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <button id="openLetterModal" class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105 shadow-lg">
-                    <i class="fas fa-envelope-open mr-2"></i> Abrir Primera Carta
+                <!-- Botón Carta 1 -->
+                <button id="openLetterModal" class="flex-1 bg-rose-400 hover:bg-rose-500 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300">
+                    Abrir Primera Carta
                 </button>
-                <!-- BOTÓN NUEVO PARA LA SEGUNDA CARTA -->
-                <button id="openLetterModal2" class="bg-rose-500 hover:bg-rose-600 text-white font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105 shadow-lg">
-                    <i class="fas fa-envelope-open-text mr-2"></i> Abrir Segunda Carta
+                <!-- Botón Carta 2 -->
+                <button id="openLetterModal2" class="flex-1 bg-rose-400 hover:bg-rose-500 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300">
+                    Abrir Segunda Carta
                 </button>
-                <!-- BOTÓN NUEVO PARA EL ESTUDIO IA -->
-                <button id="openAiModal" class="bg-purple-500 hover:bg-purple-600 text-white font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105 shadow-lg">
-                    <i class="fas fa-magic-wand-sparkles mr-2"></i> Estudio Fotográfico IA
+                <!-- Botón IA -->
+                <button id="openAiModal" class="flex-1 bg-purple-500 hover:bg-purple-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 flex items-center justify-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M9.504 1.132a1 1 0 01.992 0l1.75 1.01a1 1 0 01.5.866v2.02c0 .414.254.785.64.93L15 6.45V5a1 1 0 011-1h2a1 1 0 011 1v1.45l1.614.493c.386.145.64.516.64.93v2.02a1 1 0 01-.5.866l-1.75 1.01a1 1 0 01-.992 0l-1.75-1.01a1 1 0 01-.5-.866V8.02c0-.414-.254-.785-.64-.93L15 6.59V8a1 1 0 01-1 1H8a1 1 0 01-1-1v-1.41l-1.614.493c-.386.145-.64.516-.64.93v2.02a1 1 0 01-.5.866l-1.75 1.01a1 1 0 01-.992 0L.75 11.98a1 1 0 01-.5-.866V9.094c0-.414.254-.785.64-.93L2.5 7.67V9a1 1 0 011 1h2a1 1 0 011-1V7.55l1.614-.493c.386-.145.64-.516.64-.93V4.094a1 1 0 01.5-.866l1.75-1.01zM10 12a1 1 0 011 1v1.45l1.614.493c.386.145.64.516.64.93v2.02a1 1 0 01-.5.866l-1.75 1.01a1 1 0 01-.992 0l-1.75-1.01a1 1 0 01-.5-.866v-2.02c0-.414.254-.785.64-.93L9 14.45V13a1 1 0 011-1z" clip-rule="evenodd" /></svg>
+                    Estudio Fotográfico IA
                 </button>
             </div>
         </section>
-    </main>
 
-    <!-- FOOTER / CIERRE -->
-    <footer class="mt-10 w-full max-w-4xl p-6 md:p-10 bg-white rounded-xl card-shadow text-center">
-        <!-- FOTO 4 - Beso -->
-        <div class="rounded-lg overflow-hidden h-64 md:h-80 bg-contain bg-center bg-no-repeat"
-             style="background-image: url('foto4.jpg');">
-        </div>
-        <p class="text-4xl md:text-5xl font-parisienne text-rose-title mt-4">
-            ¡Eres mi todo, mi reina!
-        </p>
-        <p class="text-lg text-gray-500 mt-2">Con todo mi amor,</p>
-        <p class="firma mt-1 italic">
-            E.G.
-        </p>
-    </footer>
+        <!-- 7. Pie de Página (Foto 4) -->
+        <footer class="relative h-64 w-full rounded-2xl overflow-hidden shadow-2xl mt-12">
+            <!-- Imagen de fondo (MODIFICADA para bg-contain) -->
+            <div class="absolute inset-0 bg-center bg-no-repeat bg-contain" style="background-image: url('foto4.jpg'); background-color: #37282C;"></div>
+            <!-- Capa oscura -->
+            <div class="absolute inset-0 bg-black bg-opacity-30"></div>
+             <!-- Contenido de texto -->
+            <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-4">
+                <div class="heartbeat text-rose-300 text-6xl" style="text-shadow: 0 0 15px #f43f5e;">
+                    &#10084;
+                </div>
+                <!-- Firma con Iniciales -->
+                <p class="font-parisienne text-white text-5xl mt-4" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.7);">
+                    E.G.
+                </p>
+            </div>
+        </footer>
 
-    <!-- Modal de la Carta 1 -->
-    <div id="letterModal" class="hidden fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center p-4">
-        <div class="bg-white rounded-lg p-6 max-w-lg w-full shadow-2xl relative">
-            <button id="closeLetterModal" class="absolute top-3 right-3 text-gray-500 hover:text-gray-900 text-2xl">
-                &times;
-            </button>
+    </div> <!-- Fin del Wrapper -->
+
+
+    <!-- =================================================================== -->
+    <!-- MODALES (Ocultos por defecto con 'display: none') -->
+    <!-- =================================================================== -->
+
+    <!-- Modal 1: Primera Carta -->
+    <div id="letterModal" style="display: none;" class="fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center p-4">
+        <!-- Contenedor del Modal -->
+        <div class="bg-white rounded-2xl p-6 max-w-lg w-full shadow-2xl relative">
+            <!-- Botón de Cerrar -->
+            <button id="closeLetterModal" class="absolute top-3 right-3 text-gray-500 hover:text-gray-900 text-2xl">&times;</button>
+            
             <h3 class="text-3xl font-bold text-rose-title mb-4 font-parisienne text-center">La Carta de Mi Reina</h3>
             
-            <!-- CONTENIDO DE LA CARTA 1 (CORREGIDO) -->
+            <!-- CONTENIDO DE LA CARTA (Aquí el usuario debe pegar el texto o un <img> de la carta escaneada) -->
             <div id="letterContent" class="bg-yellow-50 p-4 rounded-lg border border-yellow-200 text-gray-700 max-h-96 overflow-y-auto custom-scrollbar">
                 
                 <!-- Este es el código correcto para mostrar la imagen y la firma -->
@@ -163,48 +197,45 @@
                 <p class="text-right mt-6 font-semibold">- Tu Reina</p>
 
             </div>
-
-            <p class="text-sm text-center text-gray-400 mt-4">Atesorado por siempre.</p>
         </div>
     </div>
 
-    <!-- Modal de la Carta 2 (NUEVO) -->
-    <div id="letterModal2" class="hidden fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center p-4">
-        <div class="bg-white rounded-lg p-6 max-w-lg w-full shadow-2xl relative">
-            <button id="closeLetterModal2" class="absolute top-3 right-3 text-gray-500 hover:text-gray-900 text-2xl">
-                &times;
-            </button>
-            <h3 class="text-3xl font-bold text-rose-title mb-4 font-parisienne text-center">Segunda Carta de Mi Reina</h3>
+    <!-- Modal 2: Segunda Carta -->
+    <div id="letterModal2" style="display: none;" class="fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center p-4">
+        <!-- Contenedor del Modal -->
+        <div class="bg-white rounded-2xl p-6 max-w-lg w-full shadow-2xl relative">
+            <!-- Botón de Cerrar -->
+            <button id="closeLetterModal2" class="absolute top-3 right-3 text-gray-500 hover:text-gray-900 text-2xl">&times;</button>
+            
+            <h3 class="text-3xl font-bold text-rose-title mb-4 font-parisienne text-center">Nuestra Segunda Carta</h3>
             
             <!-- CONTENIDO DE LA CARTA 2 -->
             <div id="letterContent2" class="bg-yellow-50 p-4 rounded-lg border border-yellow-200 text-gray-700 max-h-96 overflow-y-auto custom-scrollbar">
                 
-                <!-- CÓDIGO CORREGIDO PARA MOSTRAR LA SEGUNDA CARTA -->
+                <!-- CÓDIGO PARA MOSTRAR LA IMAGEN "carta2.jpg" -->
                 <img src="carta2.jpg" alt="Segunda Carta de mi Reina" class="w-full h-auto rounded-lg">
-                <p class="text-right mt-6 font-semibold">- Tu Reina</p>
-                <!-- FIN DEL CÓDIGO CORREGIDO -->
+                <p class="text-right mt-6 font-semibold">- Siempre tuya</p>
 
             </div>
-
-            <p class="text-sm text-center text-gray-400 mt-4">Atesorado por siempre.</p>
         </div>
     </div>
 
-    <!-- Modal del Estudio Fotográfico IA (NUEVO) -->
-    <div id="aiModal" class="hidden fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center p-4">
-        <div class="bg-white rounded-lg p-6 max-w-lg w-full shadow-2xl relative">
-            <button id="closeAiModal" class="absolute top-3 right-3 text-gray-500 hover:text-gray-900 text-2xl">
-                &times;
-            </button>
+    <!-- Modal 3: Estudio Fotográfico IA -->
+    <div id="aiModal" style="display: none;" class="fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center p-4">
+        <!-- Contenedor del Modal -->
+        <div class="bg-white rounded-2xl p-6 max-w-lg w-full shadow-2xl relative">
+            <!-- Botón de Cerrar -->
+            <button id="closeAiModal" class="absolute top-3 right-3 text-gray-500 hover:text-gray-900 text-2xl">&times;</button>
+            
             <h3 class="text-3xl font-bold text-rose-title mb-4 font-parisienne text-center">Estudio Fotográfico IA</h3>
             
-            <!-- CONTENEDOR DE ERRORES (NUEVO) -->
-            <div id="aiErrorMessage" class="hidden bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg mb-4 text-sm">
+            <!-- CONTENEDOR DE ERRORES -->
+            <div id="aiErrorMessage" style="display: none;" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg mb-4 text-sm">
                 <!-- Los mensajes de error aparecerán aquí -->
             </div>
 
             <div class="space-y-4">
-                <!-- 0. API KEY (NUEVO) -->
+                <!-- 0. API KEY -->
                 <div>
                     <label for="apiKeyInput" class="block text-sm font-medium text-gray-700 mb-1">Tu API Key de Google AI</label>
                     <input type="password" id="apiKeyInput" class="w-full border border-gray-300 p-2 rounded-lg" placeholder="Pega tu API Key de AI Studio aquí">
@@ -213,12 +244,16 @@
 
                 <!-- 1. Upload -->
                 <div>
-                    <label for="imageUpload" class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg cursor-pointer transition duration-300">
-                        <i class="fas fa-upload mr-2"></i> 1. Sube una foto
+                    <label for="imageUpload" class="file-upload-label">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM6.293 6.707a1 1 0 010-1.414l3-3a1 1 0 011.414 0l3 3a1 1 0 01-1.414 1.414L11 5.414V13a1 1 0 11-2 0V5.414L7.707 6.707a1 1 0 01-1.414 0z" clip-rule="evenodd" /></svg>
+                        1. Sube una foto
                     </label>
-                    <input type="file" id="imageUpload" class="hidden" accept="image/*">
-                    <div class="mt-4 border-2 border-dashed border-gray-300 rounded-lg p-2 min-h-[150px] flex justify-center items-center">
-                        <img id="imagePreview" src="" alt="Vista previa" class="hidden max-w-full h-auto max-h-48 rounded-lg">
+                    <input type="file" id="imageUpload" accept="image/*">
+                    
+                    <div id="imagePreviewContainer" class="mt-4 border-2 border-dashed border-gray-300 rounded-lg p-4 text-center" style="display: none;">
+                        <img id="imagePreview" src="#" alt="Vista previa" class="max-h-48 mx-auto rounded">
+                    </div>
+                    <div id="imagePreviewPlaceholder" class="mt-4 border-2 border-dashed border-gray-300 rounded-lg p-4 text-center">
                         <span id="imagePreviewText" class="text-gray-400">Vista previa de la imagen</span>
                     </div>
                 </div>
@@ -226,21 +261,29 @@
                 <!-- 2. Prompt -->
                 <div>
                     <label for="promptInput" class="block text-sm font-medium text-gray-700 mb-1">2. Describe el cambio</label>
-                    <input type="text" id="promptInput" class="w-full border border-gray-300 p-2 rounded-lg" placeholder="Ej: en París, como astronautas...">
+                    <input type="text" id="promptInput" class="w-full border border-gray-300 p-2 rounded-lg" placeholder="Ej: en París, como astronautas, etc.">
                 </div>
 
                 <!-- 3. Generate -->
                 <button id="generateButton" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-4 rounded-lg transition duration-300 flex items-center justify-center">
-                    <span id="generateText">Generar Magia</span>
-                    <i id="loadingSpinner" class="hidden fas fa-spinner fa-spin ml-2"></i>
+                    <span id="generateButtonText">Generar Magia</span>
+                    <svg id="generateSpinner" style="display: none;" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
                 </button>
-
+                
                 <!-- 4. Result -->
-                <div id="resultContainer" class="hidden">
-                    <h4 class="text-lg font-semibold text-gray-800">Resultado:</h4>
-                    <div class="mt-2 border-2 border-green-300 rounded-lg p-2">
-                        <img id="resultImage" src="" alt="Imagen generada" class="w-full h-auto rounded-lg">
+                <div id="resultContainer" style="display: none;">
+                    <h4 class="text-lg font-semibold text-gray-800 mb-2">Resultado:</h4>
+                    <div class="border border-gray-300 rounded-lg p-2">
+                        <img id="resultImage" src="#" alt="Imagen generada" class="w-full h-auto rounded">
                     </div>
+                    <!-- BOTÓN DE DESCARGA -->
+                    <a id="downloadButton" href="#" download="foto-generada.png" class="mt-4 inline-flex items-center justify-center w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L10 11.586l2.293-2.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" /><path fill-rule="evenodd" d="M10 3a1 1 0 011 1v6a1 1 0 11-2 0V4a1 1 0 011-1z" clip-rule="evenodd" /></svg>
+                        Descargar Foto
+                    </a>
                 </div>
             </div>
         </div>
@@ -248,113 +291,86 @@
 
     <!-- El SCRIPT debe ir al final del BODY -->
     <script>
+        // SCRIPT MODIFICADO PARA ROBUSTEZ Y DEBUGGING
         document.addEventListener('DOMContentLoaded', () => {
-            // Script para la Carta 1
-            const openBtn = document.getElementById('openLetterModal');
-            const closeBtn = document.getElementById('closeLetterModal');
-            const modal = document.getElementById('letterModal');
+            console.log("Script cargado. Buscando elementos...");
 
-            if (openBtn && closeBtn && modal) {
-                console.log("Script 1 cargado y elementos del Modal 1 encontrados.");
-                
-                openBtn.addEventListener('click', () => {
-                    modal.classList.remove('hidden');
-                    console.log("Botón 'Abrir Primera Carta' presionado.");
-                });
+            // --- Función genérica para Modales ---
+            function setupModal(openBtnId, closeBtnId, modalId, modalName) {
+                const openBtn = document.getElementById(openBtnId);
+                const closeBtn = document.getElementById(closeBtnId);
+                const modal = document.getElementById(modalId);
 
-                closeBtn.addEventListener('click', () => {
-                    modal.classList.add('hidden');
-                });
-                
-                modal.addEventListener('click', (e) => {
-                    if (e.target === modal) {
-                        modal.classList.add('hidden');
-                    }
-                });
-            } else {
-                console.error("Error: No se encontraron todos los elementos del Modal 1.");
+                if (openBtn && closeBtn && modal) {
+                    console.log(`Elementos del ${modalName} encontrados.`);
+                    openBtn.addEventListener('click', () => {
+                        console.log(`Botón '${openBtnId}' presionado. Intentando mostrar ${modalId}.`);
+                        modal.style.display = 'flex'; // Usar style.display
+                    });
+                    closeBtn.addEventListener('click', () => {
+                        modal.style.display = 'none'; // Usar style.display
+                    });
+                    modal.addEventListener('click', (e) => {
+                        if (e.target === modal) modal.style.display = 'none'; // Usar style.display
+                    });
+                } else {
+                    console.warn(`No se encontraron todos los elementos para el ${modalName}.`);
+                    if (!openBtn) console.error(`Falta el botón: ${openBtnId}`);
+                    if (!closeBtn) console.error(`Falta el botón: ${closeBtnId}`);
+                    if (!modal) console.error(`Falta el modal: ${modalId}`);
+                }
             }
 
-            // Script para la Carta 2 (NUEVO)
-            const openBtn2 = document.getElementById('openLetterModal2');
-            const closeBtn2 = document.getElementById('closeLetterModal2');
-            const modal2 = document.getElementById('letterModal2');
+            // --- Configurar los tres modales ---
+            setupModal('openLetterModal', 'closeLetterModal', 'letterModal', 'Modal 1 (Carta 1)');
+            setupModal('openLetterModal2', 'closeLetterModal2', 'letterModal2', 'Modal 2 (Carta 2)');
+            setupModal('openAiModal', 'closeAiModal', 'aiModal', 'Modal 3 (IA)');
 
-            if (openBtn2 && closeBtn2 && modal2) {
-                console.log("Script 2 cargado y elementos del Modal 2 encontrados.");
-                
-                openBtn2.addEventListener('click', () => {
-                    modal2.classList.remove('hidden');
-                    console.log("Botón 'Abrir Segunda Carta' presionado.");
-                });
 
-                closeBtn2.addEventListener('click', () => {
-                    modal2.classList.add('hidden');
-                });
-                
-                modal2.addEventListener('click', (e) => {
-                    if (e.target === modal2) {
-                        modal2.classList.add('hidden');
-                    }
-                });
-            } else {
-                console.error("Error: No se encontraron todos los elementos del Modal 2.");
-            }
-
-            // --- Script para el Estudio Fotográfico IA (NUEVO) ---
-            const openAiBtn = document.getElementById('openAiModal');
-            const closeAiBtn = document.getElementById('closeAiModal');
+            // --- Lógica específica del Modal de IA ---
             const aiModal = document.getElementById('aiModal');
-            
-            const apiKeyInput = document.getElementById('apiKeyInput'); // Campo de API Key
-            const aiErrorMessage = document.getElementById('aiErrorMessage'); // Div de Error
-            
-            const imageUpload = document.getElementById('imageUpload');
-            const imagePreview = document.getElementById('imagePreview');
-            const imagePreviewText = document.getElementById('imagePreviewText');
-            const promptInput = document.getElementById('promptInput');
-            const generateButton = document.getElementById('generateButton');
-            const generateText = document.getElementById('generateText');
-            const loadingSpinner = document.getElementById('loadingSpinner');
-            const resultContainer = document.getElementById('resultContainer');
-            const resultImage = document.getElementById('resultImage');
+            if (aiModal) {
+                const apiKeyInput = document.getElementById('apiKeyInput'); 
+                const aiErrorMessage = document.getElementById('aiErrorMessage');
+                const imageUpload = document.getElementById('imageUpload');
+                const imagePreviewContainer = document.getElementById('imagePreviewContainer');
+                const imagePreviewPlaceholder = document.getElementById('imagePreviewPlaceholder');
+                const imagePreview = document.getElementById('imagePreview');
+                const promptInput = document.getElementById('promptInput');
+                const generateButton = document.getElementById('generateButton');
+                const generateButtonText = document.getElementById('generateButtonText');
+                const generateSpinner = document.getElementById('generateSpinner');
+                const resultContainer = document.getElementById('resultContainer');
+                const resultImage = document.getElementById('resultImage');
+                const downloadButton = document.getElementById('downloadButton'); // Botón de descarga
 
-            let base64ImageData = null;
-            let mimeType = "";
+                let base64ImageData = null;
+                let originalMimeType = "image/png"; // Default
 
-            if (openAiBtn && closeAiBtn && aiModal) {
-                // Manejar apertura/cierre del modal
-                openAiBtn.addEventListener('click', () => aiModal.classList.remove('hidden'));
-                closeAiBtn.addEventListener('click', () => aiModal.classList.add('hidden'));
-                aiModal.addEventListener('click', (e) => {
-                    if (e.target === aiModal) aiModal.classList.add('hidden');
-                });
-                
                 // Función para mostrar errores en el modal
                 function showAiError(message) {
                     aiErrorMessage.textContent = message;
-                    aiErrorMessage.classList.remove('hidden');
+                    aiErrorMessage.style.display = 'block';
                 }
                 
                 // Limpiar error al cerrar
-                closeAiBtn.addEventListener('click', () => {
-                    aiErrorMessage.classList.add('hidden');
+                document.getElementById('closeAiModal').addEventListener('click', () => {
+                    aiErrorMessage.style.display = 'none';
                 });
 
-
                 // Manejar subida de imagen y vista previa
-                imageUpload.addEventListener('change', (e) => {
-                    const file = e.target.files[0];
+                imageUpload.addEventListener('change', (event) => {
+                    const file = event.target.files[0];
                     if (file) {
-                        mimeType = file.type;
+                        originalMimeType = file.type; // Guardar el tipo de imagen (jpeg, png, etc.)
                         const reader = new FileReader();
-                        reader.onload = (event) => {
-                            const dataUrl = event.target.result;
-                            imagePreview.src = dataUrl;
-                            imagePreview.classList.remove('hidden');
-                            imagePreviewText.classList.add('hidden');
-                            // Extraer solo la data Base64
-                            base64ImageData = dataUrl.split(',')[1];
+                        reader.onload = (e) => {
+                            imagePreview.src = e.target.result;
+                            imagePreviewContainer.style.display = 'block';
+                            imagePreviewPlaceholder.style.display = 'none';
+                            
+                            // Guardar solo la data base64
+                            base64ImageData = e.target.result.split(',')[1];
                         };
                         reader.readAsDataURL(file);
                     }
@@ -363,9 +379,9 @@
                 // Manejar clic en botón "Generar"
                 generateButton.addEventListener('click', async () => {
                     // Limpiar errores previos
-                    aiErrorMessage.classList.add('hidden');
+                    aiErrorMessage.style.display = 'none';
 
-                    const apiKey = apiKeyInput.value; // Obtener la API key del input
+                    const apiKey = apiKeyInput.value; 
                     const userPrompt = promptInput.value;
 
                     if (!apiKey) {
@@ -382,10 +398,10 @@
                     }
 
                     // Mostrar estado de carga
-                    generateText.textContent = "Generando...";
-                    loadingSpinner.classList.remove('hidden');
+                    generateButtonText.textContent = "Generando...";
+                    generateSpinner.style.display = 'inline-block';
                     generateButton.disabled = true;
-                    resultContainer.classList.add('hidden');
+                    resultContainer.style.display = 'none';
 
                     try {
                         const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image-preview:generateContent?key=${apiKey}`;
@@ -393,38 +409,63 @@
                         const payload = {
                             contents: [{
                                 parts: [
-                                    { text: userPrompt },
-                                    {
-                                        inlineData: {
-                                            mimeType: mimeType,
-                                            data: base64ImageData
-                                        }
-                                    }
+                                    { text: `Edita esta foto: ${userPrompt}` },
+                                    { inlineData: { mimeType: originalMimeType, data: base64ImageData } }
                                 ]
                             }],
                             generationConfig: {
-                                responseModalities: ['TEXT', 'IMAGE']
+                                responseModalities: ['IMAGE']
                             },
                         };
+                        
+                        // Implementar reintento exponencial simple
+                        let response;
+                        let attempts = 0;
+                        const maxAttempts = 5;
+                        let delay = 1000; // 1 segundo
 
-                        const response = await fetch(apiUrl, {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify(payload)
-                        });
+                        while (attempts < maxAttempts) {
+                            try {
+                                response = await fetch(apiUrl, {
+                                    method: 'POST',
+                                    headers: { 'Content-Type': 'application/json' },
+                                    body: JSON.stringify(payload)
+                                });
 
-                        if (!response.ok) {
-                            const errorData = await response.json();
-                            console.error("Error de API:", errorData);
-                            throw new Error(`Error de la API: ${errorData.error.message}`);
+                                if (response.status === 429) { // Error de cuota (Too Many Requests)
+                                    throw new Error("429");
+                                }
+                                
+                                if (!response.ok) {
+                                    const errorData = await response.json();
+                                    console.error("Error de API:", errorData);
+                                    throw new Error(`Error de la API: ${errorData.error.message}`);
+                                }
+
+                                break; // Éxito, salir del bucle
+                                
+                            } catch (error) {
+                                if (error.message === "429" && attempts < maxAttempts - 1) {
+                                    console.warn(`Intento ${attempts + 1} fallido (429). Reintentando en ${delay / 1000}s...`);
+                                    await new Promise(resolve => setTimeout(resolve, delay));
+                                    delay *= 2; // Duplicar el retraso
+                                    attempts++;
+                                } else {
+                                    throw error; // Lanzar el error si no es 429 o si se superan los intentos
+                                }
+                            }
                         }
 
+
                         const result = await response.json();
-                        const base64Data = result?.candidates?.[0]?.content?.parts?.find(p => p.inlineData)?.inlineData?.data;
+                        const part = result?.candidates?.[0]?.content?.parts?.find(p => p.inlineData);
+                        const base64Data = part?.inlineData?.data;
 
                         if (base64Data) {
-                            resultImage.src = `data:image/png;base64,${base64Data}`;
-                            resultContainer.classList.remove('hidden');
+                            const imageUrl = `data:image/png;base64,${base64Data}`;
+                            resultImage.src = imageUrl;
+                            downloadButton.href = imageUrl; // Asignar la URL al botón de descarga
+                            resultContainer.style.display = 'block';
                         } else {
                             console.error("No se encontró data de imagen en la respuesta:", result);
                             showAiError("Respuesta de IA exitosa, pero no se encontró la imagen. Revisa la consola.");
@@ -435,16 +476,17 @@
                         showAiError(`Error al contactar la API de IA: ${error.message}`);
                     } finally {
                         // Restablecer estado del botón
-                        generateText.textContent = "Generar Magia";
-                        loadingSpinner.classList.add('hidden');
+                        generateButtonText.textContent = "Generar Magia";
+                        generateSpinner.style.display = 'none';
                         generateButton.disabled = false;
                     }
                 });
-
             } else {
-                console.error("Error: No se encontraron todos los elementos del Modal AI.");
+                console.error("No se encontraron los elementos del Modal de IA.");
             }
         });
     </script>
+
 </body>
 </html>
+
