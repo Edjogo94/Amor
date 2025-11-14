@@ -124,6 +124,10 @@
                 <button id="openLetterModal2" class="bg-rose-500 hover:bg-rose-600 text-white font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105 shadow-lg">
                     <i class="fas fa-envelope-open-text mr-2"></i> Abrir Segunda Carta
                 </button>
+                <!-- BOTÓN NUEVO PARA EL ESTUDIO IA -->
+                <button id="openAiModal" class="bg-purple-500 hover:bg-purple-600 text-white font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105 shadow-lg">
+                    <i class="fas fa-magic-wand-sparkles mr-2"></i> Estudio Fotográfico IA
+                </button>
             </div>
         </section>
     </main>
@@ -186,6 +190,50 @@
         </div>
     </div>
 
+    <!-- Modal del Estudio Fotográfico IA (NUEVO) -->
+    <div id="aiModal" class="hidden fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg p-6 max-w-lg w-full shadow-2xl relative">
+            <button id="closeAiModal" class="absolute top-3 right-3 text-gray-500 hover:text-gray-900 text-2xl">
+                &times;
+            </button>
+            <h3 class="text-3xl font-bold text-rose-title mb-4 font-parisienne text-center">Estudio Fotográfico IA</h3>
+            
+            <div class="space-y-4">
+                <!-- 1. Upload -->
+                <div>
+                    <label for="imageUpload" class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg cursor-pointer transition duration-300">
+                        <i class="fas fa-upload mr-2"></i> 1. Sube una foto
+                    </label>
+                    <input type="file" id="imageUpload" class="hidden" accept="image/*">
+                    <div class="mt-4 border-2 border-dashed border-gray-300 rounded-lg p-2 min-h-[150px] flex justify-center items-center">
+                        <img id="imagePreview" src="" alt="Vista previa" class="hidden max-w-full h-auto max-h-48 rounded-lg">
+                        <span id="imagePreviewText" class="text-gray-400">Vista previa de la imagen</span>
+                    </div>
+                </div>
+
+                <!-- 2. Prompt -->
+                <div>
+                    <label for="promptInput" class="block text-sm font-medium text-gray-700 mb-1">2. Describe el cambio</label>
+                    <input type="text" id="promptInput" class="w-full border border-gray-300 p-2 rounded-lg" placeholder="Ej: en París, como astronautas...">
+                </div>
+
+                <!-- 3. Generate -->
+                <button id="generateButton" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-4 rounded-lg transition duration-300 flex items-center justify-center">
+                    <span id="generateText">Generar Magia</span>
+                    <i id="loadingSpinner" class="hidden fas fa-spinner fa-spin ml-2"></i>
+                </button>
+
+                <!-- 4. Result -->
+                <div id="resultContainer" class="hidden">
+                    <h4 class="text-lg font-semibold text-gray-800">Resultado:</h4>
+                    <div class="mt-2 border-2 border-green-300 rounded-lg p-2">
+                        <img id="resultImage" src="" alt="Imagen generada" class="w-full h-auto rounded-lg">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- El SCRIPT debe ir al final del BODY -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -239,6 +287,125 @@
                 });
             } else {
                 console.error("Error: No se encontraron todos los elementos del Modal 2.");
+            }
+
+            // --- Script para el Estudio Fotográfico IA (NUEVO) ---
+            const openAiBtn = document.getElementById('openAiModal');
+            const closeAiBtn = document.getElementById('closeAiModal');
+            const aiModal = document.getElementById('aiModal');
+            
+            const imageUpload = document.getElementById('imageUpload');
+            const imagePreview = document.getElementById('imagePreview');
+            const imagePreviewText = document.getElementById('imagePreviewText');
+            const promptInput = document.getElementById('promptInput');
+            const generateButton = document.getElementById('generateButton');
+            const generateText = document.getElementById('generateText');
+            const loadingSpinner = document.getElementById('loadingSpinner');
+            const resultContainer = document.getElementById('resultContainer');
+            const resultImage = document.getElementById('resultImage');
+
+            let base64ImageData = null;
+            let mimeType = "";
+
+            if (openAiBtn && closeAiBtn && aiModal) {
+                // Manejar apertura/cierre del modal
+                openAiBtn.addEventListener('click', () => aiModal.classList.remove('hidden'));
+                closeAiBtn.addEventListener('click', () => aiModal.classList.add('hidden'));
+                aiModal.addEventListener('click', (e) => {
+                    if (e.target === aiModal) aiModal.classList.add('hidden');
+                });
+
+                // Manejar subida de imagen y vista previa
+                imageUpload.addEventListener('change', (e) => {
+                    const file = e.target.files[0];
+                    if (file) {
+                        mimeType = file.type;
+                        const reader = new FileReader();
+                        reader.onload = (event) => {
+                            const dataUrl = event.target.result;
+                            imagePreview.src = dataUrl;
+                            imagePreview.classList.remove('hidden');
+                            imagePreviewText.classList.add('hidden');
+                            // Extraer solo la data Base64
+                            base64ImageData = dataUrl.split(',')[1];
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                });
+
+                // Manejar clic en botón "Generar"
+                generateButton.addEventListener('click', async () => {
+                    if (!base64ImageData) {
+                        alert("Por favor, sube una foto primero."); // Reemplazar con un modal de error si se desea
+                        return;
+                    }
+                    if (!promptInput.value) {
+                        alert("Por favor, escribe una descripción."); // Reemplazar con un modal de error si se desea
+                        return;
+                    }
+
+                    // Mostrar estado de carga
+                    generateText.textContent = "Generando...";
+                    loadingSpinner.classList.remove('hidden');
+                    generateButton.disabled = true;
+                    resultContainer.classList.add('hidden');
+
+                    try {
+                        const userPrompt = promptInput.value;
+                        const apiKey = ""; // La API key será proporcionada por el entorno de Canvas
+                        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image-preview:generateContent?key=${apiKey}`;
+
+                        const payload = {
+                            contents: [{
+                                parts: [
+                                    { text: userPrompt },
+                                    {
+                                        inlineData: {
+                                            mimeType: mimeType,
+                                            data: base64ImageData
+                                        }
+                                    }
+                                ]
+                            }],
+                            generationConfig: {
+                                responseModalities: ['TEXT', 'IMAGE']
+                            },
+                        };
+
+                        const response = await fetch(apiUrl, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(payload)
+                        });
+
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+
+                        const result = await response.json();
+                        const base64Data = result?.candidates?.[0]?.content?.parts?.find(p => p.inlineData)?.inlineData?.data;
+
+                        if (base64Data) {
+                            resultImage.src = `data:image/png;base64,${base64Data}`;
+                            resultContainer.classList.remove('hidden');
+                        } else {
+                            console.error("No se encontró data de imagen en la respuesta:", result);
+                            alert("Hubo un error al generar la imagen. Revisa la consola.");
+                        }
+
+                    } catch (error) {
+                        console.error("Error al generar imagen:", error);
+                        alert("Error al contactar la API de IA. Revisa la consola.");
+                    } finally {
+                        // Restablecer estado del botón
+                        generateText.textContent = "Generar Magia";
+                        loadingSpinner.classList.add('hidden');
+                        generateButton.disabled = false;
+                    }
+                });
+
+            } else {
+                console.error("Error: No se encontraron todos los elementos del Modal AI.");
             }
         });
     </script>
