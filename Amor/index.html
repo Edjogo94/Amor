@@ -17,28 +17,16 @@
             45% { transform: scale(1.05); } 60% { transform: scale(1); } 100% { transform: scale(1); }
         }
         .heartbeat { animation: heartbeat 3s infinite; }
-        /* Estilo específico para la firma cursiva */
         .firma {
             font-family: 'Parisienne', cursive;
-            font-size: 2.5rem; /* Ajuste para que se vea como una firma elegante */
+            font-size: 2.5rem;
             color: #d81b60;
-            font-weight: 400; /* La fuente Parisienne ya es ligera */
+            font-weight: 400;
         }
-        /* Estilo específico para la barra de desplazamiento del modal */
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 8px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 10px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #fbcfe8; /* Rosa claro */
-            border-radius: 10px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-            background: #f472b6; /* Rosa más oscuro */
-        }
+        .custom-scrollbar::-webkit-scrollbar { width: 8px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #fbcfe8; border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #f472b6; }
     </style>
 </head>
 <body class="min-h-screen flex flex-col items-center justify-center p-4">
@@ -52,7 +40,7 @@
 
         <!-- FOTO 1 -->
         <section class="mb-10 text-center relative overflow-hidden rounded-xl h-96 bg-cover bg-center"
-                 style="background-image: url('foto1.jpg');"> <!-- 1000259103.jpg (Pareja mirando al lado) -->
+                 style="background-image: url('foto1.jpg');">
             <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center p-4">
                 <p class="text-white text-3xl md:text-4xl font-semibold leading-relaxed">
                     Mi Amor, no hay palabras suficientes para expresar la inmensidad de lo que siento por ti. Cada día a tu lado es un regalo y una bendición.
@@ -60,6 +48,7 @@
             </div>
         </section>
 
+        <!-- TU ESENCIA -->
         <section class="mb-12">
             <h2 class="text-4xl font-bold text-rose-title mb-6 flex items-center justify-center"><i class="fas fa-gem mr-3 text-pink-500"></i> Tu Esencia Pura</h2>
             <div class="md:grid md:grid-cols-2 gap-8 items-center">
@@ -67,23 +56,23 @@
                     <p>Lo que más me enamora de ti es la esencia de tu ser:</p>
                     <ul class="list-none space-y-3">
                         <li class="flex items-start"><i class="fas fa-star text-pink-500 mr-3 mt-1"></i><span>Tu hermosa <strong class="font-bold">personalidad</strong> y tu <strong class="font-bold">sencillez</strong>.</span></li>
-                        <!-- CAMBIO SOLICITADO: Icono de cruz cambiado por el texto "JW" -->
                         <li class="flex items-start"><span class="text-pink-500 mr-3 mt-1 font-bold text-xl">JW</span><span>Tu profundo <strong class="font-bold">amor por Jehová</strong>, el pilar que guía nuestra vida.</span></li>
                     </ul>
                 </div>
                 <!-- FOTO 2 -->
                 <div class="mt-6 md:mt-0 rounded-lg overflow-hidden border-4 border-pink-300 h-80 bg-cover bg-center"
-                     style="background-image: url('foto2.jpg');"> <!-- 1000264251.jpg (Selfie sonriente) -->
+                     style="background-image: url('foto2.jpg');">
                 </div>
             </div>
         </section>
 
+        <!-- TU CARIÑO -->
         <section class="mb-12 pt-8 border-t border-pink-100">
             <h2 class="text-4xl font-bold text-rose-title mb-6 flex items-center justify-center"><i class="fas fa-hand-holding-heart mr-3 text-pink-500"></i> Tu Cariño</h2>
             <div class="md:grid md:grid-cols-2 gap-8 items-center">
                 <!-- FOTO 3 -->
                 <div class="rounded-lg overflow-hidden border-4 border-pink-300 mb-6 md:mb-0 h-80 bg-cover bg-center"
-                     style="background-image: url('foto3.jpg');"> <!-- 1000263865.jpg (Primer plano de noche) -->
+                     style="background-image: url('foto3.jpg');">
                 </div>
                 <div class="text-lg text-gray-700 space-y-4">
                     <p>Tu maravillosa <strong class="font-bold">feminidad</strong> y tu exquisito <strong class="font-bold">trato</strong> lleno de cariño, atención y detalles que me hacen sentir el hombre más afortunado.</p>
@@ -92,7 +81,7 @@
             </div>
         </section>
         
-        <!-- SECCIÓN DE NUEVA FOTO: ERES HERMOSA (Usando foto5.jpg) -->
+        <!-- ERES HERMOSA (Usando foto5.jpg) -->
         <section class="mb-12 text-center relative overflow-hidden rounded-xl h-96 bg-cover bg-center card-shadow"
                  style="background-image: url('foto5.jpg');">
             <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center p-4">
@@ -102,6 +91,7 @@
             </div>
         </section>
 
+        <!-- NUESTRO FUTURO -->
         <section class="text-center pt-8 border-t border-pink-100">
             <h2 class="text-4xl font-bold text-rose-title mb-6 flex items-center justify-center"><i class="fas fa-envelope-open-text mr-3 text-pink-500"></i> Nuestro Futuro</h2>
             <p class="text-xl italic text-gray-600 max-w-3xl mx-auto mb-8">
@@ -117,7 +107,7 @@
             </div>
         </section>
 
-        <!-- NUEVA SECCIÓN: LAS CARTAS -->
+        <!-- LAS CARTAS (BOTÓN) -->
         <section class="text-center pt-8 border-t border-pink-100 mt-12">
             <h2 class="text-4xl font-bold text-rose-title mb-6 flex items-center justify-center"><i class="fas fa-scroll mr-3 text-pink-500"></i> Nuestro Tesoro Compartido</h2>
             <p class="text-xl text-gray-700 max-w-3xl mx-auto mb-6">
@@ -129,16 +119,16 @@
         </section>
     </main>
 
+    <!-- FOOTER / CIERRE -->
     <footer class="mt-10 w-full max-w-4xl p-6 md:p-10 bg-white rounded-xl card-shadow text-center">
         <!-- FOTO 4 - Beso -->
         <div class="rounded-lg overflow-hidden h-64 md:h-80 bg-contain bg-center bg-no-repeat"
-             style="background-image: url('foto4.jpg');"> <!-- 1000257522.jpg (Beso) -->
+             style="background-image: url('foto4.jpg');">
         </div>
         <p class="text-4xl md:text-5xl font-parisienne text-rose-title mt-4">
             ¡Eres mi todo, mi reina!
         </p>
         <p class="text-lg text-gray-500 mt-2">Con todo mi amor,</p>
-        <!-- CAMBIO SOLICITADO: Iniciales E.G. en cursiva -->
         <p class="firma mt-1 italic">
             E.G.
         </p>
@@ -152,25 +142,21 @@
             </button>
             <h3 class="text-3xl font-bold text-rose-title mb-4 font-parisienne text-center">La Carta de Mi Reina</h3>
             
-            <!-- CONTENIDO DE LA CARTA (Aquí el usuario debe pegar el texto o un <img> de la carta escaneada) -->
+            <!-- CONTENIDO DE LA CARTA (CORREGIDO) -->
+            <!-- Aquí es donde va la caja que faltaba -->
             <div id="letterContent" class="bg-yellow-50 p-4 rounded-lg border border-yellow-200 text-gray-700 max-h-96 overflow-y-auto custom-scrollbar">
-                <!-- INSTRUCCIONES MEJORADAS PARA ADJUNTAR LA CARTA -->
-                <p class="italic text-gray-500 mb-4">
-                    **PARA ADJUNTAR LA CARTA (Elige una opción):**
-                    <br>1. **Si tienes el texto escrito:** Simplemente borra este mensaje y pega el contenido completo de la carta aquí.
-                    <br>2. **Si tienes una imagen escaneada:** Borra este mensaje y pega la siguiente línea (recuerda guardar la foto como **carta.jpg** en tu carpeta):
-                    <br>&lt;img src="carta.jpg" alt="Carta de mi Reina" class="w-full h-auto rounded-lg"&gt;
-                </p>
-                <p class="text-base leading-relaxed">
-                    Mi amor, desde el día en que te conocí, mi vida cambió por completo. Eres la razón de mi alegría y la paz que mi corazón siempre buscó. Gracias por ser tan atento, tan cariñoso y por mostrarme el amor de Jehová en cada detalle.
-                </p>
+                
+                <!-- Este es el código correcto para mostrar la imagen y la firma -->
+                <img src="carta.jpg" alt="Carta de mi Reina" class="w-full h-auto rounded-lg">
                 <p class="text-right mt-6 font-semibold">- Tu Reina</p>
+
             </div>
 
             <p class="text-sm text-center text-gray-400 mt-4">Atesorado por siempre.</p>
         </div>
     </div>
 
+    <!-- El SCRIPT debe ir al final del BODY -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const openBtn = document.getElementById('openLetterModal');
@@ -178,12 +164,10 @@
             const modal = document.getElementById('letterModal');
 
             if (openBtn && closeBtn && modal) {
-                // AÑADIDO: Mensaje de consola para confirmar que el script se está ejecutando y encontrando los elementos.
                 console.log("Script cargado y elementos del Modal encontrados.");
                 
                 openBtn.addEventListener('click', () => {
                     modal.classList.remove('hidden');
-                    // AÑADIDO: Mensaje de consola para confirmar que el click sí se activa.
                     console.log("Botón 'Abrir la Carta' presionado. Intentando mostrar modal.");
                 });
 
@@ -191,7 +175,6 @@
                     modal.classList.add('hidden');
                 });
                 
-                // Cerrar modal al hacer click fuera
                 modal.addEventListener('click', (e) => {
                     if (e.target === modal) {
                         modal.classList.add('hidden');
