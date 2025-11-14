@@ -198,7 +198,19 @@
             </button>
             <h3 class="text-3xl font-bold text-rose-title mb-4 font-parisienne text-center">Estudio Fotográfico IA</h3>
             
+            <!-- CONTENEDOR DE ERRORES (NUEVO) -->
+            <div id="aiErrorMessage" class="hidden bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg mb-4 text-sm">
+                <!-- Los mensajes de error aparecerán aquí -->
+            </div>
+
             <div class="space-y-4">
+                <!-- 0. API KEY (NUEVO) -->
+                <div>
+                    <label for="apiKeyInput" class="block text-sm font-medium text-gray-700 mb-1">Tu API Key de Google AI</label>
+                    <input type="password" id="apiKeyInput" class="w-full border border-gray-300 p-2 rounded-lg" placeholder="Pega tu API Key de AI Studio aquí">
+                    <p class="text-xs text-gray-500 mt-1">Necesaria para que funcione en GitHub. Obtenla en aistudio.google.com</p>
+                </div>
+
                 <!-- 1. Upload -->
                 <div>
                     <label for="imageUpload" class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg cursor-pointer transition duration-300">
@@ -294,6 +306,9 @@
             const closeAiBtn = document.getElementById('closeAiModal');
             const aiModal = document.getElementById('aiModal');
             
+            const apiKeyInput = document.getElementById('apiKeyInput'); // Campo de API Key
+            const aiErrorMessage = document.getElementById('aiErrorMessage'); // Div de Error
+            
             const imageUpload = document.getElementById('imageUpload');
             const imagePreview = document.getElementById('imagePreview');
             const imagePreviewText = document.getElementById('imagePreviewText');
@@ -314,6 +329,18 @@
                 aiModal.addEventListener('click', (e) => {
                     if (e.target === aiModal) aiModal.classList.add('hidden');
                 });
+                
+                // Función para mostrar errores en el modal
+                function showAiError(message) {
+                    aiErrorMessage.textContent = message;
+                    aiErrorMessage.classList.remove('hidden');
+                }
+                
+                // Limpiar error al cerrar
+                closeAiBtn.addEventListener('click', () => {
+                    aiErrorMessage.classList.add('hidden');
+                });
+
 
                 // Manejar subida de imagen y vista previa
                 imageUpload.addEventListener('change', (e) => {
@@ -335,12 +362,22 @@
 
                 // Manejar clic en botón "Generar"
                 generateButton.addEventListener('click', async () => {
-                    if (!base64ImageData) {
-                        alert("Por favor, sube una foto primero."); // Reemplazar con un modal de error si se desea
+                    // Limpiar errores previos
+                    aiErrorMessage.classList.add('hidden');
+
+                    const apiKey = apiKeyInput.value; // Obtener la API key del input
+                    const userPrompt = promptInput.value;
+
+                    if (!apiKey) {
+                        showAiError("Por favor, ingresa tu API Key de Google AI Studio.");
                         return;
                     }
-                    if (!promptInput.value) {
-                        alert("Por favor, escribe una descripción."); // Reemplazar con un modal de error si se desea
+                    if (!base64ImageData) {
+                        showAiError("Por favor, sube una foto primero.");
+                        return;
+                    }
+                    if (!userPrompt) {
+                        showAiError("Por favor, escribe una descripción.");
                         return;
                     }
 
@@ -351,8 +388,6 @@
                     resultContainer.classList.add('hidden');
 
                     try {
-                        const userPrompt = promptInput.value;
-                        const apiKey = ""; // La API key será proporcionada por el entorno de Canvas
                         const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image-preview:generateContent?key=${apiKey}`;
 
                         const payload = {
@@ -379,7 +414,9 @@
                         });
 
                         if (!response.ok) {
-                            throw new Error(`HTTP error! status: ${response.status}`);
+                            const errorData = await response.json();
+                            console.error("Error de API:", errorData);
+                            throw new Error(`Error de la API: ${errorData.error.message}`);
                         }
 
                         const result = await response.json();
@@ -390,12 +427,12 @@
                             resultContainer.classList.remove('hidden');
                         } else {
                             console.error("No se encontró data de imagen en la respuesta:", result);
-                            alert("Hubo un error al generar la imagen. Revisa la consola.");
+                            showAiError("Respuesta de IA exitosa, pero no se encontró la imagen. Revisa la consola.");
                         }
 
                     } catch (error) {
                         console.error("Error al generar imagen:", error);
-                        alert("Error al contactar la API de IA. Revisa la consola.");
+                        showAiError(`Error al contactar la API de IA: ${error.message}`);
                     } finally {
                         // Restablecer estado del botón
                         generateText.textContent = "Generar Magia";
