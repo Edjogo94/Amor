@@ -42,7 +42,8 @@
         <section class="mb-10 text-center relative overflow-hidden rounded-xl h-96 bg-cover bg-center"
                  style="background-image: url('foto1.jpg');">
             <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center p-4">
-                <p class="text-white text-3xl md:text-4xl font-semibold leading-relaxed">
+                <!-- CAMBIO: Texto más pequeño en móvil (text-2xl) y mediano (md:text-3xl) -->
+                <p class="text-white text-2xl md:text-3xl font-semibold leading-relaxed">
                     Mi Amor, no hay palabras suficientes para expresar la inmensidad de lo que siento por ti. Cada día a tu lado es un regalo y una bendición.
                 </p>
             </div>
@@ -111,11 +112,18 @@
         <section class="text-center pt-8 border-t border-pink-100 mt-12">
             <h2 class="text-4xl font-bold text-rose-title mb-6 flex items-center justify-center"><i class="fas fa-scroll mr-3 text-pink-500"></i> Nuestro Tesoro Compartido</h2>
             <p class="text-xl text-gray-700 max-w-3xl mx-auto mb-6">
-                El recuerdo más hermoso de tu puño y letra. Presiona el botón para revivir el cariño de aquella carta que atesoro.
+                Los recuerdos más hermosos de tu puño y letra. Presiona los botones para revivir el cariño de aquellas cartas que atesoro.
             </p>
-            <button id="openLetterModal" class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105 shadow-lg">
-                <i class="fas fa-envelope-open mr-2"></i> Abrir la Carta
-            </button>
+            <!-- CONTENEDOR DE BOTONES -->
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <button id="openLetterModal" class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105 shadow-lg">
+                    <i class="fas fa-envelope-open mr-2"></i> Abrir Primera Carta
+                </button>
+                <!-- BOTÓN NUEVO PARA LA SEGUNDA CARTA -->
+                <button id="openLetterModal2" class="bg-rose-500 hover:bg-rose-600 text-white font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105 shadow-lg">
+                    <i class="fas fa-envelope-open-text mr-2"></i> Abrir Segunda Carta
+                </button>
+            </div>
         </section>
     </main>
 
@@ -134,7 +142,7 @@
         </p>
     </footer>
 
-    <!-- Modal de la Carta -->
+    <!-- Modal de la Carta 1 -->
     <div id="letterModal" class="hidden fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center p-4">
         <div class="bg-white rounded-lg p-6 max-w-lg w-full shadow-2xl relative">
             <button id="closeLetterModal" class="absolute top-3 right-3 text-gray-500 hover:text-gray-900 text-2xl">
@@ -142,8 +150,7 @@
             </button>
             <h3 class="text-3xl font-bold text-rose-title mb-4 font-parisienne text-center">La Carta de Mi Reina</h3>
             
-            <!-- CONTENIDO DE LA CARTA (CORREGIDO) -->
-            <!-- Aquí es donde va la caja que faltaba -->
+            <!-- CONTENIDO DE LA CARTA 1 (CORREGIDO) -->
             <div id="letterContent" class="bg-yellow-50 p-4 rounded-lg border border-yellow-200 text-gray-700 max-h-96 overflow-y-auto custom-scrollbar">
                 
                 <!-- Este es el código correcto para mostrar la imagen y la firma -->
@@ -156,19 +163,49 @@
         </div>
     </div>
 
+    <!-- Modal de la Carta 2 (NUEVO) -->
+    <div id="letterModal2" class="hidden fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg p-6 max-w-lg w-full shadow-2xl relative">
+            <button id="closeLetterModal2" class="absolute top-3 right-3 text-gray-500 hover:text-gray-900 text-2xl">
+                &times;
+            </button>
+            <h3 class="text-3xl font-bold text-rose-title mb-4 font-parisienne text-center">Segunda Carta de Mi Reina</h3>
+            
+            <!-- CONTENIDO DE LA CARTA 2 -->
+            <div id="letterContent2" class="bg-yellow-50 p-4 rounded-lg border border-yellow-200 text-gray-700 max-h-96 overflow-y-auto custom-scrollbar">
+                
+                <!-- INSTRUCCIONES PARA LA SEGUNDA CARTA -->
+                <p class="italic text-gray-500 mb-4">
+                    **PARA ADJUNTAR LA SEGUNDA CARTA (Elige una opción):**
+                    <br>1. **Si tienes el texto escrito:** Borra este mensaje y pega el contenido completo de la segunda carta aquí.
+                    <br>2. **Si tienes una imagen escaneada:** Borra este mensaje y pega la siguiente línea (recuerda guardar la foto como **carta2.jpg** en tu carpeta):
+                    <br>&lt;img src="carta2.jpg" alt="Segunda Carta de mi Reina" class="w-full h-auto rounded-lg"&gt;
+                </p>
+                <p class="text-base leading-relaxed">
+                    (Aquí va el contenido de ejemplo o las instrucciones para la segunda carta...)
+                </p>
+                <p class="text-right mt-6 font-semibold">- Tu Reina</p>
+
+            </div>
+
+            <p class="text-sm text-center text-gray-400 mt-4">Atesorado por siempre.</p>
+        </div>
+    </div>
+
     <!-- El SCRIPT debe ir al final del BODY -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // Script para la Carta 1
             const openBtn = document.getElementById('openLetterModal');
             const closeBtn = document.getElementById('closeLetterModal');
             const modal = document.getElementById('letterModal');
 
             if (openBtn && closeBtn && modal) {
-                console.log("Script cargado y elementos del Modal encontrados.");
+                console.log("Script 1 cargado y elementos del Modal 1 encontrados.");
                 
                 openBtn.addEventListener('click', () => {
                     modal.classList.remove('hidden');
-                    console.log("Botón 'Abrir la Carta' presionado. Intentando mostrar modal.");
+                    console.log("Botón 'Abrir Primera Carta' presionado.");
                 });
 
                 closeBtn.addEventListener('click', () => {
@@ -181,9 +218,36 @@
                     }
                 });
             } else {
-                console.error("Error: No se encontraron todos los elementos del Modal (Botón o Ventana).");
+                console.error("Error: No se encontraron todos los elementos del Modal 1.");
+            }
+
+            // Script para la Carta 2 (NUEVO)
+            const openBtn2 = document.getElementById('openLetterModal2');
+            const closeBtn2 = document.getElementById('closeLetterModal2');
+            const modal2 = document.getElementById('letterModal2');
+
+            if (openBtn2 && closeBtn2 && modal2) {
+                console.log("Script 2 cargado y elementos del Modal 2 encontrados.");
+                
+                openBtn2.addEventListener('click', () => {
+                    modal2.classList.remove('hidden');
+                    console.log("Botón 'Abrir Segunda Carta' presionado.");
+                });
+
+                closeBtn2.addEventListener('click', () => {
+                    modal2.classList.add('hidden');
+                });
+                
+                modal2.addEventListener('click', (e) => {
+                    if (e.target === modal2) {
+                        modal2.classList.add('hidden');
+                    }
+                });
+            } else {
+                console.error("Error: No se encontraron todos los elementos del Modal 2.");
             }
         });
     </script>
 </body>
 </html>
+
